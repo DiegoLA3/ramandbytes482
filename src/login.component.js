@@ -1,17 +1,56 @@
 import React, { Component } from 'react'
 
 export default class Login extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+      uname:"",
+      password:"",
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    const { uname, password} = this.state;
+    console.log(uname, password);
+    fetch("http://localhost:5000/login", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        uname,
+        password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data,"userRegister");
+        if(data.status=="ok"){
+          alert("login successful");
+          window.localStorage.setItem("token",data.data);
+          window.localStorage.setItem("loggedIn",true);
+
+          window.location.href="./userDetails";
+
+        }
+      });
+  }
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <h3>Sign In</h3>
 
         <div className="mb-3">
-          <label>Email address</label>
+          <label>Username:</label>
           <input
-            type="email"
+            type="username"
             className="form-control"
-            placeholder="Enter email"
+            placeholder=""
+            onChange={(e) => this.setState({uname: e.target.value})}
           />
         </div>
 
@@ -21,6 +60,7 @@ export default class Login extends Component {
             type="password"
             className="form-control"
             placeholder="Enter password"
+            onChange={(e) => this.setState({password: e.target.value})}
           />
         </div>
 

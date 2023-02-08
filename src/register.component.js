@@ -5,9 +5,10 @@ export default class Register extends Component {
   constructor(props){
     super (props)
     this.state={
-      uname:"",
       fname:"",
       lname:"",
+      email:"",
+      uname:"",
       password:""
     };
     this.handleSubmit=this.handleSubmit.bind(this);
@@ -15,8 +16,8 @@ export default class Register extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    const {uname, fname, lname, password } = this.state;
-    console.log(uname, fname, lname, password);
+    const {fname,lname, email,uname, password } = this.state;
+    console.log(fname,lname,email,uname, password);
     fetch("http://localhost:5000/register", {
       method: "POST",
       crossDomain: true,
@@ -26,9 +27,10 @@ export default class Register extends Component {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
-        uname,
         fname,
         lname,
+        email,
+        uname,
         password,
       }),
     })
@@ -44,21 +46,13 @@ export default class Register extends Component {
         <h3>Register</h3>
 
         <div className="mb-3">
-          <label>Username:</label>
+          <label>First Name:</label>
           <input
-            type="text"
+            type="firstName"
             className="form-control"
             placeholder=""
-            onChange={(e)=>this.setState({ uname: e.target.value})}
+            onChange={(e)=>this.setState({ fname: e.target.value})}
           />
-        </div>
-
-        <div className="mb-3">
-          <label>First Name:</label>
-          <input type="text" className="form-control" placeholder="" 
-          onChange={(e)=>this.setState({ fname: e.target.value})}
-          />
-
         </div>
 
         <div className="mb-3">
@@ -70,6 +64,25 @@ export default class Register extends Component {
             onChange={(e)=>this.setState({ lname: e.target.value})}
           />
         </div>
+
+        <div className="mb-3">
+          <label>Email:</label>
+          <input
+            type="email"
+            className="form-control"
+            placeholder=""
+            onChange={(e)=>this.setState({ email: e.target.value})}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label>Username:</label>
+          <input type="username" className="form-control" placeholder="" 
+          onChange={(e)=>this.setState({ uname: e.target.value})}
+          />
+
+        </div>
+
 
         <div className="mb-3">
           <label>Password:</label>
