@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 import Login from './login.component'
 import Register from './register.component'
-import userDetails from './userDetails'
+import Userdetails from './Userdetails'
 
 
 function App() {
@@ -44,10 +44,10 @@ function App() {
         <div className="auth-wrapper">
           <div className="auth-inner">
             <Routes>
-              <Route exact path="/" element={isLoggedIn=="true" ? <userDetails /> : <Login />} />
+              <Route exact path="/" element={isLoggedIn==="true" ? <Userdetails /> : <Login />} />
               <Route path="/sign-in" element={<Login />} />
               <Route path="/sign-up" element={<Register />} />
-              <Route path="/userDetails" element = {<userDetails />} />
+              <Route path="/userDetails" element = {<Userdetails />} />
             </Routes>
           </div>
         </div>
