@@ -1,3 +1,11 @@
+Hello! welcome to Ram and Bytes TINFO 482 senior project.
+
+This is the UI and backend of the project it is rec that you
+use the database for this here 
+https://github.com/DiegoLA3/ramandbytesdb
+Thank you!
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
